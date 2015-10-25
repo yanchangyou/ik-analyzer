@@ -45,20 +45,19 @@ NOTE: reproduce with: ant test  -Dtestcase=IKAnalyzerTest -Dtests.seed=84A32D5FB
 
 部署执行
 
-1. 打包
-    run-> build  输入 package
-      执行后，在target里面有jar包
-2. 添加jar包 
-      添加ik-analyzer-5.3.0.jar 到 solr的/WEB-INF/lib下面（配置文件在jar包里面）
-3. 配置
-    在\solrapps\solr-5.3.1\new_core\conf\schema.xml
-4. 添加字段类型
+1，打包   run-> build  输入 package 执行后，在target里面有jar包
+
+2，添加jar包 添加ik-analyzer-5.3.1.jar 到 solr的/WEB-INF/lib下面（配置文件在jar包里面）
+
+3，配置 在\solrapps\solr-5.3.1\new_core\conf\schema.xml
+
+3.1，添加字段类型
 
     <fieldType name="text_ik" class="solr.TextField">   
          <analyzer class="org.wltea.analyzer.lucene.IKAnalyzer"/>   
     </fieldType>
     
-5. 添加字段
-    
+3.2 添加字段
+
     <field name="content" type="text_ik" indexed="true"  stored="true"  multiValued="false" /> 
 
