@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/blueshen/ik-analyzer.svg)](https://travis-ci.org/blueshen/ik-analyzer)
-
 IKAnalyzer的作者为林良益（linliangyi2007@gmail.com），项目网站为<http://code.google.com/p/ik-analyzer/>
 
 本版本，主要特点：
@@ -46,19 +44,21 @@ NOTE: reproduce with: ant test  -Dtestcase=IKAnalyzerTest -Dtests.seed=84A32D5FB
     位置/ik-analyzer/src/main/resources
 
 部署执行
-1，打包
+
+1. 打包
     run-> build  输入 package
       执行后，在target里面有jar包
-2，添加jar包 
+2. 添加jar包 
       添加ik-analyzer-5.3.0.jar 到 solr的/WEB-INF/lib下面（配置文件在jar包里面）
-3，配置
+3. 配置
     在\solrapps\solr-5.3.1\new_core\conf\schema.xml
-  3.1 添加字段类型
+4. 添加字段类型
+
     <fieldType name="text_ik" class="solr.TextField">   
          <analyzer class="org.wltea.analyzer.lucene.IKAnalyzer"/>   
     </fieldType>
-  3.2 添加字段
-    <field name="content" type="text_ik" indexed="true"  stored="true"  multiValued="false" /> 
-4，注意
-    添加的doc的字段，必须在schema.xml中定义，否则添加不进去
     
+5. 添加字段
+    
+    <field name="content" type="text_ik" indexed="true"  stored="true"  multiValued="false" /> 
+
