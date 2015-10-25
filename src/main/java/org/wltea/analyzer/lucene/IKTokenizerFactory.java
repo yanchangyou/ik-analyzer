@@ -10,6 +10,13 @@ import org.apache.lucene.analysis.util.TokenizerFactory;
 //lucene:4.9
 import org.apache.lucene.util.AttributeFactory;
 
+/**
+ * 
+ * 功能描述: 兼容5.3.1，支持过滤器
+ * 
+ * @version 2.0.0
+ * @author yanchangyou(15070440)
+ */
 public class IKTokenizerFactory extends TokenizerFactory {
 
     private boolean useSmart;
