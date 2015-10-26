@@ -42,14 +42,16 @@ NOTE: reproduce with: ant test  -Dtestcase=IKAnalyzerTest -Dtests.seed=84A32D5FB
     -Dtestcase=IKAnalyzerTest -Dtests.seed=2B97CB880D43C76C -Dtests.asserts=false -Dtests.file.encoding=UTF-8
 
 配置文件
+里面有扩展字典配置和停止词配置，方便个性化改造
 
-    位置/ik-analyzer/src/main/resources
+    位置：/ik-analyzer/src/main/resources
 
 solr部署执行
 
 1，打包   run-> build  输入 package 执行后，在target里面有jar包
 
-2，添加jar包 添加ik-analyzer-5.3.1.jar 到 solr的/WEB-INF/lib下面（配置文件在jar包里面）
+2，添加jar包 
+添加ik-analyzer-5.3.1.jar 到 solr的/WEB-INF/lib下面（配置文件在jar包里面），配置文件放在 classes目录下面
 
 3，配置 在\solrapps\solr-5.3.1\new_core\conf\schema.xml
 
