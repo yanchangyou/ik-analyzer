@@ -45,7 +45,7 @@ NOTE: reproduce with: ant test  -Dtestcase=IKAnalyzerTest -Dtests.seed=84A32D5FB
 
     位置/ik-analyzer/src/main/resources
 
-部署执行
+solr部署执行
 
 1，打包   run-> build  输入 package 执行后，在target里面有jar包
 
