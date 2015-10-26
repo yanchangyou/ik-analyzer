@@ -76,3 +76,5 @@ solr部署执行
 
     <field name="content" type="text_ik" indexed="true"  stored="true"  multiValued="false" /> 
 
+4 启动solr
+    在分词器里面，可以选择text_ik类型，然后进行分词测试
