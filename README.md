@@ -56,9 +56,20 @@ solr部署执行
 3，配置 在\solrapps\solr-5.3.1\new_core\conf\schema.xml
 
 3.1，添加字段类型
+简单配置
 
     <fieldType name="text_ik" class="solr.TextField">   
          <analyzer class="org.wltea.analyzer.lucene.IKAnalyzer"/>   
+    </fieldType>
+
+带过滤器配置
+
+    <fieldType name="text_ik" class="solr.TextField">
+        <analyzer>
+            <tokenizer class="org.wltea.analyzer.lucene.IKTokenizerFactory"/>
+            <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+            <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />		
+        </analyzer>
     </fieldType>
     
 3.2 添加字段
