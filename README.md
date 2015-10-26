@@ -38,9 +38,11 @@ NOTE: reproduce with: ant test  -Dtestcase=IKAnalyzerTest -Dtests.seed=84A32D5FB
 解决：
 
 1，添加jvm参数
--Dtestcase=IKAnalyzerTest -Dtests.seed=2B97CB880D43C76C -Dtests.asserts=false -Dtests.file.encoding=UTF-8
+
+    -Dtestcase=IKAnalyzerTest -Dtests.seed=2B97CB880D43C76C -Dtests.asserts=false -Dtests.file.encoding=UTF-8
 
 配置文件
+
     位置/ik-analyzer/src/main/resources
 
 部署执行
