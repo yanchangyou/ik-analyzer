@@ -70,6 +70,7 @@ public class IKAnalzyerDemo {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
+		    analyzer.close();
 			//释放TokenStream的所有资源
 			if(ts != null){
 		      try {

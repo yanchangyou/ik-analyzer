@@ -47,6 +47,7 @@ import org.apache.lucene.util.BytesRef;
  * @author linliangyi
  *
  */
+@SuppressWarnings("deprecation")
 public class IKQueryExpressionParser {
 	
 	//public static final String LUCENE_SPECIAL_CHAR = "&&||-()':={}[],";
@@ -465,7 +466,7 @@ public class IKQueryExpressionParser {
 			return null;
 		}
 		
-		BooleanQuery resultQuery = new BooleanQuery();
+        BooleanQuery resultQuery = new BooleanQuery();
 
 		if(this.querys.size() == 1){
 			return this.querys.get(0);

@@ -28,7 +28,6 @@ package org.wltea.analyzer.core;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.wltea.analyzer.dic.DictSegment;
 import org.wltea.analyzer.dic.DictionaryUtil;
 import org.wltea.analyzer.dic.Hit;
 
