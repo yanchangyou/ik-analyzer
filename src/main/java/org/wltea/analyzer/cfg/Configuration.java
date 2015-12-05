@@ -24,8 +24,6 @@
  */
 package org.wltea.analyzer.cfg;
 
-import java.util.List;
-
 import org.wltea.analyzer.dic.DictSegment;
 
 /**

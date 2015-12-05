@@ -9,6 +9,7 @@ import org.apache.lucene.analysis.util.TokenizerFactory;
 //import org.apache.lucene.util.AttributeSource.AttributeFactory;
 //lucene:4.9
 import org.apache.lucene.util.AttributeFactory;
+import org.wltea.analyzer.cfg.Configuration;
 
 /**
  * 
@@ -19,7 +20,8 @@ import org.apache.lucene.util.AttributeFactory;
  */
 public class IKTokenizerFactory extends TokenizerFactory {
 
-    private boolean useSmart;
+    private boolean       useSmart;
+    private Configuration cfg;
 
     public boolean useSmart() {
         return useSmart;
@@ -29,10 +31,15 @@ public class IKTokenizerFactory extends TokenizerFactory {
         this.useSmart = useSmart;
     }
 
-    public IKTokenizerFactory(Map<String, String> args) {
+    public IKTokenizerFactory(Map<String, String> args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         super(args);
-        // assureMatchVersion();
-//        this.setUseSmart(args.get("useSmart").toString().equals("true"));
+        this.setUseSmart("true".equals(args.get("useSmart")));
+        
+        if (args.get("configClass") != null) {
+            cfg = (Configuration) Class.forName(args.get("configClass")).newInstance();
+            cfg.setUseSmart(useSmart);
+        }
+        
         this.setUseSmart(true);
 
     }
@@ -44,8 +51,8 @@ public class IKTokenizerFactory extends TokenizerFactory {
     }
 
     @Override
-    public Tokenizer create(AttributeFactory arg0) {
-        Tokenizer _IKTokenizer = new IKTokenizer(this.useSmart);
+    public Tokenizer create(AttributeFactory factory) {
+        Tokenizer _IKTokenizer = new IKTokenizer(cfg);
         return _IKTokenizer;
     }
 }
