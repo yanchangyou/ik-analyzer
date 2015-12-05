@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * 词典树分段，表示词典树的一个分枝
  */
-class DictSegment implements Comparable<DictSegment>{
+public class DictSegment implements Comparable<DictSegment>{
 	
 	//公用字典表，存储汉字
 	private static final Map<Character , Character> charMap = new HashMap<Character , Character>(16 , 0.95f);
@@ -55,21 +55,21 @@ class DictSegment implements Comparable<DictSegment>{
 	private int nodeState = 0;	
 	
 	
-	DictSegment(Character nodeChar){
+	public DictSegment(Character nodeChar){
 		if(nodeChar == null){
 			throw new IllegalArgumentException("参数为空异常，字符不能为空");
 		}
 		this.nodeChar = nodeChar;
 	}
 
-	Character getNodeChar() {
+	public Character getNodeChar() {
 		return nodeChar;
 	}
 	
 	/*
 	 * 判断是否有下一个节点
 	 */
-	boolean hasNextNode(){
+	public boolean hasNextNode(){
 		return  this.storeSize > 0;
 	}
 	
@@ -78,7 +78,7 @@ class DictSegment implements Comparable<DictSegment>{
 	 * @param charArray
 	 * @return Hit
 	 */
-	Hit match(char[] charArray){
+	public Hit match(char[] charArray){
 		return this.match(charArray , 0 , charArray.length , null);
 	}
 	
@@ -89,7 +89,7 @@ class DictSegment implements Comparable<DictSegment>{
 	 * @param length
 	 * @return Hit 
 	 */
-	Hit match(char[] charArray , int begin , int length){
+	public Hit match(char[] charArray , int begin , int length){
 		return this.match(charArray , begin , length , null);
 	}
 	
@@ -101,7 +101,7 @@ class DictSegment implements Comparable<DictSegment>{
 	 * @param searchHit
 	 * @return Hit 
 	 */
-	Hit match(char[] charArray , int begin , int length , Hit searchHit){
+	public Hit match(char[] charArray , int begin , int length , Hit searchHit){
 		
 		if(searchHit == null){
 			//如果hit为空，新建
@@ -166,7 +166,7 @@ class DictSegment implements Comparable<DictSegment>{
 	 * 加载填充词典片段
 	 * @param charArray
 	 */
-	void fillSegment(char[] charArray){
+	public void fillSegment(char[] charArray){
 		this.fillSegment(charArray, 0 , charArray.length , 1); 
 	}
 	
@@ -174,7 +174,7 @@ class DictSegment implements Comparable<DictSegment>{
 	 * 屏蔽词典中的一个词
 	 * @param charArray
 	 */
-	void disableSegment(char[] charArray){
+	public void disableSegment(char[] charArray){
 		this.fillSegment(charArray, 0 , charArray.length , 0); 
 	}
 	

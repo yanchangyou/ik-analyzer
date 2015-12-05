@@ -33,7 +33,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.wltea.analyzer.cfg.Configuration;
-import org.wltea.analyzer.dic.Dictionary;
 
 /**
  * 
@@ -85,6 +84,10 @@ class AnalyzeContext {
     	this.orgLexemes = new QuickSortSet();
     	this.pathMap = new HashMap<Integer , LexemePath>();    	
     	this.results = new LinkedList<Lexeme>();
+    }
+    
+    public Configuration getCfg() {
+        return cfg;
     }
     
     int getCursor(){
@@ -318,7 +321,7 @@ class AnalyzeContext {
 		while(result != null){
     		//数量词合并
     		this.compound(result);
-    		if(Dictionary.getSingleton().isStopWord(this.segmentBuff ,  result.getBegin() , result.getLength())){
+    		if(cfg.getStopWordDict().match(this.segmentBuff ,  result.getBegin() , result.getLength()).isMatch()){
        			//是停止词继续取列表的下一个
     			result = this.results.pollFirst(); 				
     		}else{

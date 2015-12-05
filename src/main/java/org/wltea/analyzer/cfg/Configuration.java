@@ -26,14 +26,14 @@ package org.wltea.analyzer.cfg;
 
 import java.util.List;
 
+import org.wltea.analyzer.dic.DictSegment;
+
 /**
  * 
  * 配置管理类接口
  * 
  */
 public interface Configuration {
-	
-	
 	
 	/**
 	 * 返回useSmart标志位
@@ -48,32 +48,20 @@ public interface Configuration {
 	 * @param useSmart
 	 */
 	public void setUseSmart(boolean useSmart);
-	
-	
+		
 	/**
-	 * 获取主词典路径
-	 * 
-	 * @return String 主词典路径
-	 */
-	public String getMainDictionary();
-
-	/**
-	 * 获取量词词典路径
-	 * @return String 量词词典路径
-	 */
-	public String getQuantifierDicionary();
-
-	/**
-	 * 获取扩展字典配置路径
-	 * @return List<String> 相对类加载器的路径
-	 */
-	public List<String> getExtDictionarys();
-
-
-	/**
-	 * 获取扩展停止词典配置路径
-	 * @return List<String> 相对类加载器的路径
-	 */
-	public List<String> getExtStopWordDictionarys();
-			
+     * 主词典对象
+     */
+    public DictSegment getMainDict();
+    
+    /**
+     * 停止词词典 
+     */
+    public DictSegment getStopWordDict();
+    
+    /**
+     * 量词词典
+     */
+    public DictSegment getQuantifierDict();
+    
 }
