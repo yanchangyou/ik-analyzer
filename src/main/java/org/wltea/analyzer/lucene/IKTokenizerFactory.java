@@ -40,8 +40,6 @@ public class IKTokenizerFactory extends TokenizerFactory {
             cfg.setUseSmart(useSmart);
         }
         
-        this.setUseSmart(true);
-
     }
 
     public Tokenizer create(AttributeFactory factory,

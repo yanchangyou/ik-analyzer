@@ -64,6 +64,21 @@ public class DefaultConfig implements Configuration {
     private boolean             useSmart;
 
     /**
+     * 主字典
+     */
+    DictSegment mainDict;
+
+    /**
+     * 停止词
+     */
+    DictSegment stopWordDict;
+
+    /**
+     * 量词
+     */
+    DictSegment quantifierDict;
+    
+    /**
      * 返回单例
      * 
      * @return Configuration单例
@@ -75,7 +90,7 @@ public class DefaultConfig implements Configuration {
     /*
      * 初始化配置文件
      */
-    private DefaultConfig() {
+    public DefaultConfig() {
         props = new Properties();
 
         InputStream input = this.getClass().getClassLoader().getResourceAsStream(FILE_NAME);
@@ -113,7 +128,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @return String 主词典路径
      */
-    public String getMainDictionary() {
+    private String getMainDictionary() {
         return PATH_DIC_MAIN;
     }
 
@@ -122,7 +137,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @return String 量词词典路径
      */
-    public String getQuantifierDicionary() {
+    private String getQuantifierDicionary() {
         return PATH_DIC_QUANTIFIER;
     }
 
@@ -131,7 +146,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @return List<String> 相对类加载器的路径
      */
-    public List<String> getExtDictionarys() {
+    private List<String> getExtDictionarys() {
         List<String> extDictFiles = new ArrayList<String>(2);
         String extDictCfg = props.getProperty(EXT_DICT);
         if (extDictCfg != null) {
@@ -153,7 +168,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @return List<String> 相对类加载器的路径
      */
-    public List<String> getExtStopWordDictionarys() {
+    private List<String> getExtStopWordDictionarys() {
         List<String> extStopWordDictFiles = new ArrayList<String>(2);
         String extStopWordDictCfg = props.getProperty(EXT_STOP);
         if (extStopWordDictCfg != null) {
@@ -170,22 +185,20 @@ public class DefaultConfig implements Configuration {
         return extStopWordDictFiles;
     }
 
-    DictSegment _MainDict;
-
     public DictSegment getMainDict() {
 
-        if (_MainDict != null) {
-            return _MainDict;
+        if (mainDict != null) {
+            return mainDict;
         }
         // 建立一个主词典实例
-        _MainDict = new DictSegment((char) 0);
+        mainDict = new DictSegment((char) 0);
         // 读取主词典文件
-        DictionaryUtil.loadDict(_MainDict, getMainDictionary());
+        DictionaryUtil.loadDict(mainDict, getMainDictionary());
         
         // 加载扩展词典
         this.loadExtDict();
 
-        return _MainDict;
+        return mainDict;
     }
 
     /**
@@ -194,10 +207,8 @@ public class DefaultConfig implements Configuration {
     private void loadExtDict() {
         // 加载扩展词典配置
         List<String> extDictFiles = getExtDictionarys();
-        DictionaryUtil.loadDict(_MainDict, extDictFiles.toArray(new String[0]));
+        DictionaryUtil.loadDict(mainDict, extDictFiles.toArray(new String[0]));
     }
-
-    DictSegment stopWordDict;
 
     public DictSegment getStopWordDict() {
         if (stopWordDict != null) {
@@ -212,8 +223,6 @@ public class DefaultConfig implements Configuration {
 
         return stopWordDict;
     }
-
-    DictSegment quantifierDict;
 
     public DictSegment getQuantifierDict() {
         if (quantifierDict != null) {

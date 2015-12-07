@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.wltea.ik-analyzer</groupId>
     <artifactId>ik-analyzer-eh</artifactId>
-    <version>5.3.1</version>
+    <version>5.3.1-SNAPSHOT</version>
     <name>IK Analyzer</name>
     
     <description>A dictionary and grammar-based Chinese segmenter.</description>
