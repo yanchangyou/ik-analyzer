@@ -29,6 +29,7 @@ import org.wltea.analyzer.dic.DictSegment;
 /**
  * 
  * 配置管理类接口
+ * 修改：接口中使用字典，不使用路径，支持更大的自由度 2015-12-7 yanchangyou
  * 
  */
 public interface Configuration {

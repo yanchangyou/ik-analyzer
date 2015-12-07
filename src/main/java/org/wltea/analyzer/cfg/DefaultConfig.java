@@ -25,10 +25,8 @@
  */
 package org.wltea.analyzer.cfg;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.List;
@@ -39,6 +37,7 @@ import org.wltea.analyzer.dic.DictionaryUtil;
 
 /**
  * Configuration 默认实现 2012-5-8
+ * 修改：接口中使用字典，不使用路径，支持更大的自由度 2015-12-7 yanchangyou
  *
  */
 public class DefaultConfig implements Configuration {
@@ -171,22 +170,22 @@ public class DefaultConfig implements Configuration {
         return extStopWordDictFiles;
     }
 
-    DictSegment mainDict;
+    DictSegment _MainDict;
 
     public DictSegment getMainDict() {
 
-        if (mainDict != null) {
-            return mainDict;
+        if (_MainDict != null) {
+            return _MainDict;
         }
         // 建立一个主词典实例
-        mainDict = new DictSegment((char) 0);
+        _MainDict = new DictSegment((char) 0);
         // 读取主词典文件
-        DictionaryUtil.loadDict(mainDict, getMainDictionary());
+        DictionaryUtil.loadDict(_MainDict, getMainDictionary());
         
         // 加载扩展词典
         this.loadExtDict();
 
-        return mainDict;
+        return _MainDict;
     }
 
     /**
@@ -195,7 +194,7 @@ public class DefaultConfig implements Configuration {
     private void loadExtDict() {
         // 加载扩展词典配置
         List<String> extDictFiles = getExtDictionarys();
-        DictionaryUtil.loadDict(mainDict, extDictFiles.toArray(new String[0]));
+        DictionaryUtil.loadDict(_MainDict, extDictFiles.toArray(new String[0]));
     }
 
     DictSegment stopWordDict;
